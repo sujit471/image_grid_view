@@ -63,7 +63,7 @@ class _PhotoDetailScreenState extends State<PhotoDetailScreen> {
                     child: Image.network(
                       photo.url,
                       fit: BoxFit.cover,
-                      height: 300,  // Adjust height as per your design
+                      height: 300,
                     ),
                   ),
                 ),
@@ -79,7 +79,7 @@ class _PhotoDetailScreenState extends State<PhotoDetailScreen> {
                     textAlign: TextAlign.center,
                   ),
                 ),
-                SizedBox(height: 20.0), // Add space between elements
+                SizedBox(height: 20.0),
               ],
             ),
           );
