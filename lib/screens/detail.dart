@@ -33,6 +33,8 @@ class _PhotoDetailScreenState extends State<PhotoDetailScreen> {
         title: Text('Title: ${widget.photos[_currentIndex].title}'),
         backgroundColor: Colors.teal,
       ),
+
+
       body: PageView.builder(
         controller: PageController(initialPage: _currentIndex),
         onPageChanged: _onPageChanged,
@@ -46,33 +48,38 @@ class _PhotoDetailScreenState extends State<PhotoDetailScreen> {
                 Container(
                   margin: EdgeInsets.all(16.0),
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15.0),
-                    border: Border.all(color: Colors.teal, width: 2.0),
+                    borderRadius: BorderRadius.circular(20.0),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black26,
-                        blurRadius: 4,
-                        offset: Offset(2, 2),
+                        color: Colors.grey.withOpacity(0.5),
+                        spreadRadius: 2,
+                        blurRadius: 5,
+                        offset: Offset(0, 3),
                       ),
                     ],
                   ),
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(13.0),
-                    child: Image.network(photo.url),
+                    borderRadius: BorderRadius.circular(20.0),
+                    child: Image.network(
+                      photo.url,
+                      fit: BoxFit.cover,
+                      height: 300,  // Adjust height as per your design
+                    ),
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
                   child: Text(
                     photo.title,
                     style: TextStyle(
-                      fontSize: 18.0,
+                      fontSize: 20.0,
                       fontWeight: FontWeight.bold,
                       color: Colors.teal,
                     ),
                     textAlign: TextAlign.center,
                   ),
                 ),
+                SizedBox(height: 20.0), // Add space between elements
               ],
             ),
           );
