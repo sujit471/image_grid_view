@@ -8,22 +8,20 @@ class PhotoGridScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(80),
-        
-        child: Container(
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(40.0),
-                bottomRight: Radius.circular(40.0),
-              )
+        preferredSize: Size.fromHeight(100),
+        child: AppBar(
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(
+              bottom: Radius.circular(20),
+            ),
           ),
-          child: AppBar(
-            
-            title: Center(child: Text('Photo Grid App')),
-            leading :Icon(Icons.person),
-            actions: [Icon(Icons.search)],
-            backgroundColor: Colors.teal,
+          title: const Text(
+            'Photo Grid App',
+            style: TextStyle(color: Colors.white),
           ),
+          leading: Icon(Icons.menu),
+          // actions: [Icon(Icons.search)],
+          backgroundColor: Colors.teal,
         ),
       ),
       body: Consumer<PhotoProvider>(
@@ -33,50 +31,68 @@ class PhotoGridScreen extends StatelessWidget {
           } else {
             return Padding(
               padding: const EdgeInsets.all(8.0),
-              child: GridView.builder(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                  childAspectRatio: 1,
-                  crossAxisSpacing: 8,
-                  mainAxisSpacing: 8,
-                ),
-                itemCount: photoProvider.photos.length,
-                itemBuilder: (context, index) {
-                  final photo = photoProvider.photos[index];
-                  return GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => PhotoDetailScreen(
-                            initialIndex: index,
-                            photos: photoProvider.photos,
-                          ),
-                        ),
-                      );
-                    },
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15.0),
-                        border: Border.all(color: Colors.teal, width: 2.0),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black26,
-                            blurRadius: 4,
-                            offset: Offset(2, 2),
-                          ),
-                        ],
+              child: Column(
+
+                children: [
+                   Row(
+                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      ElevatedButton(onPressed:(){},style:ButtonStyle(
+                        backgroundColor:  MaterialStateProperty.all<Color>(Colors.blueAccent),
+                      ) , child: const Text("Albums",style: TextStyle(color: Colors.white),),),
+                      const Icon(Icons.search)
+                    ],
+
+                  ),
+                  SizedBox(height: 20,),
+                  Expanded(
+                    child: GridView.builder(
+                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 3,
+                        childAspectRatio: 1,
+                        crossAxisSpacing: 15,
+                        mainAxisSpacing: 15,
                       ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(13.0),
-                        child: Image.network(
-                          photo.thumbnailUrl,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
+                      itemCount: photoProvider.photos.length,
+                      itemBuilder: (context, index) {
+                        final photo = photoProvider.photos[index];
+                        return GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => PhotoDetailScreen(
+                                  initialIndex: index,
+                                  photos: photoProvider.photos,
+                                ),
+                              ),
+                            );
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15.0),
+                              border: Border.all(color: Colors.teal, width: 2.0),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black26,
+                                  blurRadius: 4,
+                                  offset: Offset(2, 2),
+                                ),
+                              ],
+                            ),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(13.0),
+                              child: Image.network(
+                                photo.thumbnailUrl,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                        );
+                      },
                     ),
-                  );
-                },
+                  ),
+                ],
               ),
             );
           }
