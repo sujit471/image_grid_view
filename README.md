@@ -1,16 +1,11 @@
 # image_grid_view
 
-A new Flutter project.
+A Flutter application that fetches photos from an API and displays them in a grid layout. Users can click on a photo to view it in full size and swipe horizontally to navigate between photos.
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Features
+Fetch Data: Utilizes the JSONPlaceholder API to fetch a list of photos.
+Model: Stores the fetched photo data in a structured model.
+Grid Display: Displays photos in a grid layout on the main page.
+Detail Page: Allows users to view a selected photo in full size with its title in the app bar and navigate between photos using PageView.
+State Management: Utilizes Provider for state management.
+Styling: Clean and user-friendly styling.
